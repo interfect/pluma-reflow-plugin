@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-#  Reflow plugin for Gedit
+#  Reflow plugin for pluma
 #
 #  Copyright (C) 2011 Guillaume Chereau
 #
@@ -18,8 +18,7 @@
 #  You should have received a copy of the GNU General Public License along with
 #  this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import gedit
-import gconf
+import pluma
 import gtk
 import re
 import textwrap
@@ -34,9 +33,9 @@ ACCELERATOR = '<Alt>q'
 # Simple to start.
 FILL_REGEX = r'^([#\*"/\-\+]*\s*)+'
 
-class ReflowPlugin(gedit.Plugin):
+class ReflowPlugin(pluma.Plugin):
     def __init__(self):
-        gedit.Plugin.__init__(self)
+        pluma.Plugin.__init__(self)
         self._instances = {}
 
     def activate(self, window):
@@ -128,7 +127,7 @@ class ReflowWindowHelper:
         first_prefix = splits[0][0]
         prefix = splits[-1][0]
         text = textwrap.fill(text,
-                             width = get_gedit_margin(),
+                             width = get_pluma_margin(),
                              initial_indent=first_prefix,
                              subsequent_indent=prefix,
                              drop_whitespace=True)
@@ -201,9 +200,9 @@ class ReflowWindowHelper:
         document.end_user_action()
 
 
-def get_gedit_margin():
-    gconf_client = gconf.client_get_default()
-    margin = gconf_client.get_int('/apps/gedit-2/preferences/editor/'
-                                  'right_margin/right_margin_position')
-    return margin
+def get_pluma_margin():
+    # We no longer have mateconf, but we can't from gi.repository import Gio
+    # because apparently "static modules" are already loaded by the time we get
+    # control.
+    return 80
 

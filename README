@@ -1,17 +1,18 @@
 
 ===================
-Reflow gedit plugin
+Reflow Pluma plugin
 ===================
 
-This plugin allows to automatically format paragraphs using gedit margin width.
+This plugin allows to automatically format paragraphs to 80 characters.
 This is similar to emacs <alt>-q command that I love so much.
 
 
 Install
 -------
 
-Copy the files reflow.gedit-plugin and reflow.py into your gedit plugin
-directory (on ubuntu this is ~/.gnome2/gedit/plugins/), then restart gedit.
+Copy the files reflow.pluma-plugin and reflow.py into your pluma plugin
+directory (for example, /usr/lib/x86_64-linux-gnu/pluma/plugins), then restart
+pluma.
 
 
 Usage
@@ -24,6 +25,8 @@ automatically format the current paragraph.
 
 Contact
 -------
+
+The "Gedit Reflow Plugin" on which this plugin is based was originally by:
 
 Guillaume Chereau <guillaume.chereau@gmail.com>
 
